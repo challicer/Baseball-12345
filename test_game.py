@@ -36,3 +36,8 @@ def test_return_solved_result_2_strike(game):
     game.question = "123"
     result= game.guess("124")
     assert result.strikes == 2
+
+def test_return_solved_result_2_ball(game):
+    game.question = "123"
+    result= game.guess("321")
+    assert result.balls == 2

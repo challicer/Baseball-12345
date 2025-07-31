@@ -20,7 +20,10 @@ class Game:
 
         strikes = self.get_strikes(guess_number)
         balls = 0
-        return GameResult(False, strikes, 0)
+        for idx, num in enumerate(guess_number):
+            if num in self._question and num != self._question[idx]:
+                balls +=1
+        return GameResult(False, strikes, balls)
 
     def get_strikes(self, guess_number):
         strikes = 0
