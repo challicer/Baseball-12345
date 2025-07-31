@@ -13,17 +13,18 @@ class Game:
     def question(self, value):
         self._question = value
 
-    def guess(self, guess_number) -> GameResult | None:
+    def guess(self, guess_number) -> GameResult:
         self._assert_illegal_value(guess_number)
         if guess_number == self._question:
             return GameResult(True, 3, 0)
+        return GameResult(False, self.get_strikes(guess_number), self.get_balls(guess_number))
 
-        strikes = self.get_strikes(guess_number)
+    def get_balls(self, guess_number):
         balls = 0
         for idx, num in enumerate(guess_number):
             if num in self._question and num != self._question[idx]:
-                balls +=1
-        return GameResult(False, strikes, balls)
+                balls += 1
+        return balls
 
     def get_strikes(self, guess_number):
         strikes = 0
